@@ -39,7 +39,10 @@
       z-index: -1;
       pointer-events: none;
     }
-
+    p{
+      background-color: #e03142;
+      display: inline-block;
+    }
     header {
       background-image: url('banner-do-ze-toyota.png');
       background-size: cover;
@@ -69,7 +72,7 @@
     }
 
     .container {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 20px;
     }
@@ -86,13 +89,15 @@
     .video-wrapper {
       perspective: 1000px;
       width: 100%;
-      display: flex;
+      display: flex; /* Usamos flexbox para colocar os vídeos lado a lado */
       justify-content: center;
       align-items: center;
+      gap: 20px; /* Espaçamento entre os vídeos */
+      flex-wrap: wrap; /* Permite que os vídeos quebrem a linha em telas menores */
     }
 
     .video-inner {
-      width: 85%;
+      width: 48%; /* Ajusta a largura para dois vídeos com um pequeno espaço */
       height: 400px;
       transition: transform 0.2s ease-out;
       transform-style: preserve-3d;
@@ -175,7 +180,7 @@
       }
       .video-inner {
         height: 250px;
-        width: 100%;
+        width: 100%; /* Faz os vídeos ocuparem a largura total em telas pequenas */
       }
     }
   </style>
@@ -191,20 +196,21 @@
     <section class="video-section">
       <h2>Assista ao Vídeo</h2>
       <div class="video-wrapper" id="videoWrapper">
-        <div class="video-inner" id="videoInner">
+        <div class="video-inner">
           <video src="Trueno.mp4" controls></video>
+        </div>
+        <div class="video-inner">
+          <video src="go17u4.mp4" controls></video>
         </div>
       </div>
     </section>
 
     <section class="downloads">
-      <a class="download-btn" href="link1.pdf" download>Download 1</a>
-      <a class="download-btn" href="link2.pdf" download>Download 2</a>
-      <a class="download-btn" href="link3.pdf" download>Download 3</a>
-      <a class="download-btn" href="link4.pdf" download>Download 4</a>
-      <a class="download-btn" href="link5.pdf" download>Download 5</a>
-      <a class="download-btn" href="link6.pdf" download>Download 6</a>
+      <a class="download-btn" href="https://sharemods.com/wup43jimbr0z/packzetoyota.7z.html" download>Download MODAPCK ZETOYOTA</a>
+      <a class="download-btn" href="https://sharemods.com/m27k5hkjbd85/modloader.zip.html" download>Download MODLOADER ZETOYOTA</a>
+      <a class="download-btn" href="https://miscellaneous-c.blogspot.com/2022/04/download-gta-san-andreas-pc-10-us-full.html" download>Download GTA by DJJR</a>
     </section>
+    <p>Não use o WINDOWED MODE da pasta ESSENTIALS no SAMP, causa crash.</p>
   </div>
 
   <footer>
@@ -213,18 +219,26 @@
 
   <script>
     const videoWrapper = document.getElementById('videoWrapper');
-    const videoInner = document.getElementById('videoInner');
+    // Seleciona *todos* os elementos com a classe 'video-inner'
+    const videoInners = document.querySelectorAll('.video-inner');
 
     videoWrapper.addEventListener('mousemove', e => {
       const bounds = videoWrapper.getBoundingClientRect();
       const x = e.clientX - bounds.left;
-      const percent = (x / bounds.width - 0.5) * 15;
-      const angle = percent * 10;
-      videoInner.style.transform = `rotateY(${angle}deg)`;
+      const percent = (x / bounds.width - 0.5) * 5;
+      const angle = percent * 8;
+
+      // Aplica a transformação a cada elemento 'video-inner'
+      videoInners.forEach(videoInner => {
+        videoInner.style.transform = `rotateY(${angle}deg)`;
+      });
     });
 
     videoWrapper.addEventListener('mouseleave', () => {
-      videoInner.style.transform = 'rotateY(0deg)';
+      // Reseta a transformação para cada elemento 'video-inner'
+      videoInners.forEach(videoInner => {
+        videoInner.style.transform = 'rotateY(0deg)';
+      });
     });
   </script>
 
